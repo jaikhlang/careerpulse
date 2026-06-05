@@ -66,6 +66,12 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', User::class),
         ],
+        // existing users provider
+
+        'crawler_clients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\CrawlerClient::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
