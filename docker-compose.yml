@@ -1,7 +1,7 @@
 services:
 
   app:
-    image: ghcr.io/YOUR_GITHUB_USERNAME/career-pulse:latest
+    image: ghcr.io/jaikhlang/careerpulse:latest
     restart: unless-stopped
     env_file:
       - .env
