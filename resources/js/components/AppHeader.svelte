@@ -51,7 +51,8 @@
         breadcrumbs?: BreadcrumbItem[];
     } = $props();
 
-    const auth = $derived(page.props.auth);
+    // const auth = $derived(page.props.auth);
+    const auth = $derived.by(() => page.props.auth ?? { user: null });
     const url = currentUrlState();
 
     const activeItemStyles =
@@ -244,7 +245,7 @@
                                 >
                                     {#if auth.user?.avatar}
                                         <AvatarImage
-                                            src={auth.user.avatar}
+                                            src={auth.user?.avatar}
                                             alt={auth.user?.name}
                                         />
                                     {/if}
