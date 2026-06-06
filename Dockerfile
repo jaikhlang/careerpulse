@@ -1,11 +1,20 @@
-FROM node:24-alpine AS frontend
+FROM php:8.4-cli AS frontend
+
+# Install Node.js
+RUN apt-get update && apt-get install -y \
+    curl git unzip
+
+RUN curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
+RUN apt-get install -y nodejs
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
-
 COPY . .
+
+RUN composer install --no-dev --optimize-autoloader
+RUN npm install
 RUN npm run build
 
 
