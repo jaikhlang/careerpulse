@@ -252,14 +252,14 @@
                                     <AvatarFallback
                                         class="rounded-lg bg-neutral-200 font-semibold text-black dark:bg-neutral-700 dark:text-white"
                                     >
-                                        {getInitials(auth.user?.name ?? '')}
+                                        {getInitials(auth?.user?.name ?? '')}
                                     </AvatarFallback>
                                 </Avatar>
                             </Button>
                         {/snippet}
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" class="w-56">
-                        {#if auth.user}
+                        {#if auth?.user}
                             <UserMenuContent user={auth.user} />
                         {/if}
                     </DropdownMenuContent>

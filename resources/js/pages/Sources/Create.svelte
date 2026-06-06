@@ -16,9 +16,9 @@
 </script>
 
 <form on:submit|preventDefault={submit}>
-    <input bind:value={$form.name} />
-    <input bind:value={$form.slug} />
-    <input bind:value={$form.base_url} />
+    <input bind:value={form.name} />
+    <input bind:value={form.slug} />
+    <input bind:value={form.base_url} />
 
-    <button type="submit"> Save </button>
+    <button type="submit">Save</button>
 </form>
