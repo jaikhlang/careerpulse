@@ -14,7 +14,7 @@
     </thead>
 
     <tbody>
-        {#each sources.data as source}
+        {#each sources.data as source (source.id)}
             <tr>
                 <td>{source.name}</td>
                 <td>{source.type}</td>
