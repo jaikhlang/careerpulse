@@ -26,12 +26,11 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->trustProxies(
             at: '*',
-            headers: Request::HEADER_X_FORWARDED_ALL,
-                     Request::HEADER_X_FORWARDED_HOST,
-                     Request::HEADER_X_FORWARDED_PROTO,
-                     Request::HEADER_X_FORWARDED_PORT,
-        )
-
+            headers: \Illuminate\Http\Request::HEADER_X_FORWARDED_FOR |
+                    \Illuminate\Http\Request::HEADER_X_FORWARDED_HOST |
+                    \Illuminate\Http\Request::HEADER_X_FORWARDED_PORT |
+                    \Illuminate\Http\Request::HEADER_X_FORWARDED_PROTO
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
