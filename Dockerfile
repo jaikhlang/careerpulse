@@ -6,6 +6,7 @@ COPY package*.json ./
 RUN npm install
 
 COPY . .
+ENV WAYFINDER_SKIP_GENERATE=1
 RUN npm run build
 
 

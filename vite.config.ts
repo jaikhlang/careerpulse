@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import inertia from '@inertiajs/vite';
 import { wayfinder } from '@laravel/vite-plugin-wayfinder';
 import { svelte } from '@sveltejs/vite-plugin-svelte';
@@ -7,6 +8,8 @@ import { bunny } from 'laravel-vite-plugin/fonts';
 import { defineConfig } from 'vite';
 
 const isSvelteCheck = process.argv.some((argument) => argument.includes('svelte-check'));
+const shouldGenerateWayfinderTypes =
+    process.env.WAYFINDER_SKIP_GENERATE !== '1' && existsSync('vendor/autoload.php');
 
 if (isSvelteCheck) {
     process.env.LARAVEL_BYPASS_ENV_CHECK ??= '1';
@@ -28,6 +31,9 @@ export default defineConfig({
         svelte(),
         wayfinder({
             formVariants: true,
+            command: shouldGenerateWayfinderTypes
+                ? 'php artisan wayfinder:generate'
+                : 'echo "Skipping Wayfinder type generation"',
         }),
     ],
 });
