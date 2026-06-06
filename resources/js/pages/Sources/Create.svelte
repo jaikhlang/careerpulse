@@ -11,6 +11,7 @@
     });
 
     const submit = () => {
+        console.log(form);
         form.post(route('sources.store'));
     };
 </script>
